@@ -1,3 +1,36 @@
 <ul>
-  <li><a href="/server/books">Books</a></li>
+  <li><a href="/server/books">All books JSON</a></li>
 </ul>
+
+<form [formGroup]="searchForm">
+  <div>
+    <input type="radio" formControlName="criteria" value="Title"/>
+    <label>Title</label>
+
+    <input type="radio" formControlName="criteria" value="Author"/>
+    <label>Author</label>
+  </div>
+
+  <div>
+    <input type="text" formControlName="inputSearch">
+  </div>
+  <div>
+    <label>Category</label>
+<!--    Change category to chips -->
+    <select formControlName="category">
+      <option *ngFor="let category of categories" value="{{category}}">{{category}}</option>
+    </select>
+  </div>
+
+  <button (click)="displaySearchParameters()" type="submit" [disabled]="!searchForm.valid">Search</button>
+</form>
+
+<!--Results-->
+
+<div *ngIf="books">
+  <ul>
+    <li *ngFor="let book of books">{{book.title}}, <i>{{book.author_first_name}} {{book.author_last_name}}</i></li>
+  </ul>
+</div>
+
+
