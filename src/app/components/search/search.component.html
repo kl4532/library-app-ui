@@ -1,0 +1,19 @@
+<form [formGroup]="searchForm">
+  <div>
+    <input type="radio" formControlName="criteria" value="Title"/>
+    <label>Title</label>
+
+    <input type="radio" formControlName="criteria" value="Author"/>
+    <label>Author</label>
+  </div>
+
+  <div>
+    <input type="text" formControlName="inputSearch">
+  </div>
+  <div>
+    <label>Category</label>
+    <c-selectButton formControlName="categories" [options]="categories"></c-selectButton>
+  </div>
+
+  <button (click)="onSearch()" type="submit" [disabled]="!searchForm.valid">Search</button>
+</form>
