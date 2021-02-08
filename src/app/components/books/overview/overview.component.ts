@@ -19,14 +19,16 @@ export class BookOverviewComponent implements OnInit {
     this.books = [];
     this.searchDataForm = this.booksService.getSearchData()
 
-    this.displaySearchParameters();
+    if(this.searchDataForm) this.displaySearchParameters();
   }
 
   displaySearchParameters() {
     this.booksService.getAllBooks().subscribe((books: any) => {
-      this.books = books;
-      console.log('books', books);
+      console.log('allBooks', books);
       console.log('form', this.searchDataForm.value);
+    })
+    this.booksService.getBooksByCriteria(this.searchDataForm.value).subscribe((books: any) => {
+      this.books = books;
     })
   }
 
