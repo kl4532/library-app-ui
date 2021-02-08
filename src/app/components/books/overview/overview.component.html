@@ -1,5 +1,12 @@
-<div *ngIf="books">
+<div *ngIf="books.length>0; else noResults">
   <ul>
-    <li *ngFor="let book of books">{{book.title}}, <i>{{book.author_first_name}} {{book.author_last_name}}</i></li>
+    <li *ngFor="let book of books;">
+      <a [routerLink]="['/details', {id: book.id}]">{{book.title}}, </a>
+      <a [routerLink]="['/author', {id: book.id}]"><i>{{book.author_first_name}} {{book.author_last_name}}</i></a>
+    </li>
   </ul>
 </div>
+
+<ng-template #noResults>
+  <i class="no-content-message">No luck...</i>
+</ng-template>
