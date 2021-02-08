@@ -33,11 +33,16 @@ export class SearchComponent implements OnInit {
       {name: 'Adventure', selected: false},
       {name: 'Fantasy', selected: false},
       {name: 'Education', selected: false},
-      {name: 'Crime', selected: false}
+      {name: 'Crime', selected: false},
+      {name: 'IT', selected: false}
     ];
   }
   onSearch() {
-    this.booksService.setSearchData(this.searchForm)
-    this.router.navigate(['book-overview'], );
+    this.booksService.setSearchData(this.searchForm);
+
+    // this.router.navigate(['/book-overview']);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigate(['book-overview'])
+    );
   }
 }
