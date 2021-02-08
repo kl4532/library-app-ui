@@ -1,1 +1,23 @@
-<p>details works!</p>
+<ng-container *ngIf="bookDetails">
+  <h3>{{bookDetails.title}}</h3>
+  <h5>by {{bookDetails.author_first_name}} {{bookDetails.author_last_name}}</h5>
+  <p>Release year: {{bookDetails.year}}</p>
+  <p>Genere: {{bookDetails.category}}</p>
+  <p>Available copies:
+    <b [style.color]="bookDetails.available_copies===0 ? 'red' : 'green'">
+      {{bookDetails.available_copies}}</b>
+  </p>
+
+  <button *ngIf="bookDetails.available_copies!==0; else elseBlock">Borrow</button>
+  <ng-template #elseBlock>
+    <button>Stand in queue</button>
+  </ng-template>
+
+
+
+  <p><b></b></p>
+  <p>Here place abstract Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Aliquam architecto assumenda consectetur consequatur deserunt dolor exercitationem harum,
+    iure nobis omnis placeat porro possimus reiciendis repellat sed similique sunt unde voluptates.</p>
+</ng-container>
+
